@@ -1,0 +1,112 @@
+openapi: 3.1.0
+info:
+  title: BookHub API
+  description: The ultimate API for feline world domination through literature
+  version: "1.0"
+servers:
+- url: http://localhost:8088/bookhub
+  description: Generated server url
+paths:
+  /api/books/{id}:
+    get:
+      tags:
+      - book-controller
+      operationId: getBookById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Book"
+    put:
+      tags:
+      - book-controller
+      operationId: updateBook
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Book"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Book"
+    delete:
+      tags:
+      - book-controller
+      operationId: deleteBook
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /api/books:
+    get:
+      tags:
+      - book-controller
+      operationId: getAllBooks
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Book"
+    post:
+      tags:
+      - book-controller
+      operationId: createBook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Book"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Book"
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        author:
+          type: string
+        price:
+          type: number
+          format: double
