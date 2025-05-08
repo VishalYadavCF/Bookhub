@@ -31,11 +31,17 @@ public class BookService {
             book.setTitle(bookDetails.getTitle());
             book.setAuthor(bookDetails.getAuthor());
             book.setPrice(bookDetails.getPrice());
+            book.setDescription(bookDetails.getDescription()); // Update description
             return bookRepository.save(book);
         }).orElseThrow(() -> new RuntimeException("Book not found with id " + id));
+    }
+
+    public String getDescription(Long id) {
+        return bookRepository.findById(id).map(Book::getDescription).orElseThrow(() -> new RuntimeException("Book not found with id " + id));
     }
 
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
     }
 }
+

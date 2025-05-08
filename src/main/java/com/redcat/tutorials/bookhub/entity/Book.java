@@ -12,6 +12,9 @@ public class Book {
     private String author;
     private Double price;
 
+    @Lob // Allows storing large text
+    private String description;
+
     // Getters and Setters
     public Long getId() {
         return id;
@@ -43,5 +46,13 @@ public class Book {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

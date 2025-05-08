@@ -41,6 +41,12 @@ public class BookController {
         }
     }
 
+    // write endpoint to retrieve book description
+    @GetMapping("/{id}/description")
+    public ResponseEntity<String> getBookDescription(@PathVariable Long id) {
+        return ResponseEntity.ok(bookService.getDescription(id));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
